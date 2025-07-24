@@ -2,15 +2,12 @@ package org.automationexercise.stepsdefinition;
 
 import org.automationexercise.context.ScenarioContext;
 import org.automationexercise.pages.LoginPage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
 public class LoginPageStepDef {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginPageStepDef.class);
     private final ScenarioContext context;
 
     // Constructor Parameter
@@ -45,6 +42,17 @@ public class LoginPageStepDef {
     @When("I click the Signup button")
     public void i_click_the_signup_button() {
         loginPage.clickSignupButton();
+    }
+
+    @When("I login in using email {string} and password {string}")
+    public void i_login_in_using_email_and_password(String email, String pwd) {
+        if (loginPage == null) {
+            loginPage = new LoginPage(context.getDriver());
+        }
+        loginPage.inputLoginEmail(email);
+        loginPage.inputLoginPassword(pwd);
+        loginPage.clickLoginButton();
+
     }
 
 }

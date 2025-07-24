@@ -51,4 +51,28 @@ public class HomePageStepDef {
     public void i_should_see_a_visible_login_button() {
         Assert.assertTrue(homePage.checkLoginbutton(), "Login button is not exist");
     }
+
+    @Then("I see user name info {string}")
+    public void i_see_user_name_info(String expectedUserName) {
+        String actualUserName = homePage.getLoggedUserInfo();
+        Assert.assertEquals(actualUserName, expectedUserName);
+    }
+
+    @When("I click logout button")
+    public void i_click_logout_button() {
+        homePage.clickLogoutButton();
+        loginPage = new LoginPage(context.getDriver());
+    }
+
+    @Then("I should be redirected to the login page")
+    public void i_should_be_redirected_to_the_login_page() {
+        String actualUrl = loginPage.getLoginPageUrl();
+        Assert.assertEquals(actualUrl,"https://www.automationexercise.com/login");
+        loginPage = new LoginPage(context.getDriver());
+    }
+
+    @Then("I delete account")
+    public void i_delete_account() {
+        homePage.clickDeleteAccountButton();
+    }
 }

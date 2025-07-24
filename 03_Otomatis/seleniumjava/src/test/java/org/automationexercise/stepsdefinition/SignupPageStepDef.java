@@ -1,7 +1,6 @@
 package org.automationexercise.stepsdefinition;
 
 import org.automationexercise.context.ScenarioContext;
-import org.automationexercise.pages.AccountCreatedPage;
 import org.automationexercise.pages.LoginPage;
 import org.automationexercise.pages.SignupPage;
 
@@ -12,9 +11,7 @@ import io.cucumber.java.en.When;
 public class SignupPageStepDef {
 
     private final ScenarioContext context;
-    private LoginPage loginPage;
     private SignupPage signupPage;
-    private AccountCreatedPage accountCreatedPage;
 
     public SignupPageStepDef(ScenarioContext context) {
         this.context = context;
@@ -28,7 +25,7 @@ public class SignupPageStepDef {
         }
         // navigate to sign up button
         context.getDriver().navigate().to("https://www.automationexercise.com/login");
-        loginPage = new LoginPage(context.getDriver());
+        LoginPage loginPage = new LoginPage(context.getDriver());
         loginPage.inputSignupNameAndEmail(name, email);
         loginPage.clickSignupButton();
 
@@ -57,8 +54,8 @@ public class SignupPageStepDef {
         signupPage.selectDateOfBirth(day, month, year);
     }
 
-    @When("I fill in first name {string} and last name {string}")
-    public void i_fill_in_first_name_and_last_name(String firstName, String lastName) {
+    @When("I fill in address first name {string} and last name {string}")
+    public void i_fill_in_address_first_name_and_last_name(String firstName, String lastName) {
         signupPage.inputAddressName(firstName, lastName);
     }
 
@@ -83,6 +80,5 @@ public class SignupPageStepDef {
     @When("I click the Create Account button")
     public void i_click_the_create_account_button() {
         signupPage.submitCreateAccount();
-        accountCreatedPage = new AccountCreatedPage(context.getDriver());
     }
 }

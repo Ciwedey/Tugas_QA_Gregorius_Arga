@@ -13,8 +13,6 @@ public class LoginPage {
     private final By signUpEmailLocator = By.xpath("//input[@data-qa=\"signup-email\"]");
     private final By loginButtonLocator = By.xpath("//button[@data-qa=\"login-button\"]");
     private final By signUpButtonLocator = By.xpath("//button[@data-qa=\"signup-button\"]");
-    private final By loginFormLocator = By.xpath("//div[@class=\"login-form\"]");
-    private final By signUpFormLocator = By.xpath("//div[@class=\"signup-form\"]");
 
     //Constructor
     public LoginPage(WebDriver driver) {
@@ -28,14 +26,6 @@ public class LoginPage {
         return url;
     }
 
-    public boolean checkLoginFormIsExist() {
-        return driver.findElement(loginFormLocator).isDisplayed();
-    }
-
-    public boolean checkSignUpFormIsExist() {
-        return driver.findElement(signUpFormLocator).isDisplayed();
-    }
-
     public void inputSignupNameAndEmail(String name, String email) {
         driver.findElement(signUpNameLocator).sendKeys(name);
         driver.findElement(signUpEmailLocator).sendKeys(email);
@@ -43,6 +33,18 @@ public class LoginPage {
 
     public void clickSignupButton() {
         driver.findElement(signUpButtonLocator).click();
+    }
+
+    public void inputLoginEmail(String email) {
+        driver.findElement(loginEmailLocator).sendKeys(email);
+    }
+
+    public void inputLoginPassword(String password) {
+        driver.findElement(loginPasswordLocator).sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        driver.findElement(loginButtonLocator).click();
     }
 
 }

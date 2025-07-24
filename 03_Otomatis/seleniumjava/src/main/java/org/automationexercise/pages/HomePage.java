@@ -12,8 +12,10 @@ public class HomePage {
 
     // Locators
     private final By loginPageLocator = By.xpath("//a[@href='/login']");
-    private final By HomePageLocator = By.xpath("//a[@href='/home']");
     private final By HomePageIconLocator = By.xpath("//img[@src=\"/static/images/home/logo.png\"]");
+    private final By logoutBtnLocator = By.xpath("//a[@href=\"/logout\"]");
+    private final By loggedUserInfoLocator = By.xpath("//ul[@class='nav navbar-nav']//a/b");
+    private final By deleteAccountBtnLocator = By.xpath("//a[@href=\"/delete_account\"]");
 
     // Constructor
     public HomePage(WebDriver driver) {
@@ -27,10 +29,6 @@ public class HomePage {
 
     public boolean checkLoginbutton() {
         return driver.findElement(loginPageLocator).isDisplayed();
-    }
-
-    public void navigateToHomePage() {
-        driver.findElement(HomePageLocator).click();
     }
 
     public String getHomePageUrl() {
@@ -49,8 +47,27 @@ public class HomePage {
         // Example of implementing explicit wait directly in page methods
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         Boolean icon = wait.until(ExpectedConditions.visibilityOfElementLocated(HomePageIconLocator)).isDisplayed();
-        // Boolean icon = driver.findElement(HomePageIconLocator).isDisplayed();
         System.out.println("Home page icon: " + icon);
         return icon;
+    }
+
+    public boolean checkLogoutButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtnLocator)).isDisplayed();
+    }
+
+    public void clickLogoutButton() {
+        driver.findElement(logoutBtnLocator).click();
+    }
+
+    public String getLoggedUserInfo() {
+        String userInfo = driver.findElement(loggedUserInfoLocator).getText();
+        System.out.println("Logged as: " + userInfo);
+        return userInfo;
+    }
+
+    public void clickDeleteAccountButton() {
+        driver.findElement(deleteAccountBtnLocator).click();
+        System.out.println("Delete account button clicked");
     }
 }
