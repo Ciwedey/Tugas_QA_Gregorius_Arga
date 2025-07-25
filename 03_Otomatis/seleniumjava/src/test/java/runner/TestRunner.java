@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
             glue = {"org.automationexercise.stepsdefinition"},
             plugin = {"pretty", "html:target/cucumber-reports.html","json:target/cucumber.json"},
             monochrome = true,
-            publish = false)
+            publish = true)
 
 // Collect all scenario test to be passed to testNG runner
 public class TestRunner extends AbstractTestNGCucumberTests { 
