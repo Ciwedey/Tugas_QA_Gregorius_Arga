@@ -93,9 +93,18 @@ seleniumjava/
    mvn test
    ```
 
-### How View Report
-1. Cucumber online report link will be automatically generated after execution.
+### How to View Report
+1. Cucumber online report link will be automatically generated in log after execution.
 2. Cucumber local report in Html generated under **/seleniumjava/target** directory with file name **cucumber-reports.html**
+
+
+### Screenshot execution result
+
+- **Execution Log**
+
+- **Cucumber Online Report**
+
+- **Cucumber Local report**
 
 ---
 
@@ -149,4 +158,4 @@ Feel free to fork and submit pull requests!
 
 ---
 
-## 📜
+##
